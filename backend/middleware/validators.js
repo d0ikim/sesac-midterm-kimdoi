@@ -43,8 +43,6 @@ exports.getTodoValidator = [
 exports.handleValidationResult = (req, res, next) => {
   const result = validationResult(req).errors;// express-validator에서 가져온 validationResult
   if (result.length !== 0) {
-    // 입력 오류가 있는 경우
-    const extracteError = result.map(err => err.msg)
     return next(new Error("InputValidation"));
   }
   next();

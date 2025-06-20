@@ -11,7 +11,6 @@ module.exports = function (req,res,next){
   if(!verifyToken(token)){
     return next(new Error("TokenNotMatched"))
   }
-  
   req.user = verifiedToken.userId;
   next();
 }
@@ -20,7 +19,7 @@ function verifyToken(token){
   try{
     return jwt.verify(token, SECRET_KEY);
   } catch(e){
-    console.error("JWT Error:", e.message); // 이거 추가!
+    console.error("JWT Error:", e.message);
     return false
   }
 }
